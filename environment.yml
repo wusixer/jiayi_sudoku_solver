@@ -1,0 +1,31 @@
+name: jiayi_sudoku_solver
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - tenacity
+  - biopython
+  - matplotlib
+  - pyarrow
+  - numba
+  - pytorch
+  - torchaudio
+  - torchvision
+  - pyg
+  - pip
+  - git
+  - numpy
+  - ipykernel
+  - jupyter
+  - jupyterlab
+  - pandas
+  - black
+  - flake8
+  - isort
+  - mypy
+  - pip:
+    - mmtf-python
+    - git+https://github.com/ostrokach/proteinsolver.git
+    - git+https://github.com/pkimlab/kmbio.git
+    - git+https://github.com/pkimlab/kmtools.git 
+prefix: /Users/jiayicox/opt/anaconda3/envs/sudoku
