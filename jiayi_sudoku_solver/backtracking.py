@@ -139,7 +139,7 @@ def back_tracking_solve(
         pos_val_dict (Dict[Tuple, List]): _description_
 
     Returns:
-        _type_: position (key) and its possible values (val) for missing positions
+        bool: position (key) and its possible values (val) for missing positions
     """
 
     all_keys = list(pos_val_dict.keys())

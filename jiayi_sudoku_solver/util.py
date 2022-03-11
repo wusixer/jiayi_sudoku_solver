@@ -8,6 +8,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+def mask_for_given_sudoku_val(np_Sudoku_original: np.ndarray) -> np.ndarray:
+    """
+    Create a 9 x 9 mask of the entire puzzle
+    
+    Args:
+        np_Sudoku_original(np.ndarray): the original sudoku puzzle output from `get_np_sudoku` func
+    
+    Returns:
+        np.ndarray:shape as the original sudoku but with 1 indicate the position's value is given and 0 otherwise
+    """
+
+    return np.where(np_Sudoku_original > 0, 1, np_Sudoku_original)
+
+
 def get_nine_blocks(np_Sudoku: np.ndarray) -> List[np.ndarray]:
     """split 9x9 sudoku in np representation into a list of nine 3 x 3 np.ndarray blocks
 
@@ -146,6 +160,32 @@ def which_block_it_is(row: int, col: int) -> int:
             return 7
         else:
             return 8
+
+
+def get_error_from_updated_sukudo(updated_Sukudo: np.ndarray) -> Tuple[int, int, int]:
+    """get total errors from the updated_Sukudo
+
+    Args:
+        updated_Sukudo (np.ndarray): potentially solved sudoku
+
+    Returns:
+        _type_: total_error, rowwise_correct, colwise_correct
+    """
+    # rowwise error
+    # for each row, count how many unique non-zero element
+    rowwise_correct = [
+        len(set([x for x in updated_Sukudo[i] if x != 0])) for i in range(9)
+    ]
+    # each row should have 9 unique nonzero numbers, find the num of violation
+    rowwise_error = abs(81 - sum(rowwise_correct))
+    # colwise error
+    colwise_correct = [
+        len(set([x for x in updated_Sukudo.T[i] if x != 0])) for i in range(9)
+    ]
+    colwise_error = abs(81 - sum(colwise_correct))
+    total_error = rowwise_error + colwise_error
+
+    return total_error, rowwise_correct, colwise_correct
 
 
 def show_sudoku_with_known_truth(
