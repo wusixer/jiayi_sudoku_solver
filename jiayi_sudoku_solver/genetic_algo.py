@@ -7,6 +7,7 @@ from typing import List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
+from tqdm import tqdm
 
 import jiayi_sudoku_solver.Sudoku as Sudoku
 from jiayi_sudoku_solver.util import *
@@ -154,7 +155,18 @@ def genetic_algorithm(
     """Genetic algorithm to find a sudoku solution
 
     Args:
-        startingSudoku (str): the input puzzle
+        startingSudoku (str): the input puzzle represented by a string, e.g 
+                                startingSudoku1 =   '
+                                                    430260700
+                                                    682070493
+                                                    107804500
+                                                    820190047
+                                                    004602910
+                                                    950703028
+                                                    509306070
+                                                    240057106
+                                                    703018250
+                                                    '
         population_size (int, optional): num of offspring for each generation. Defaults to 100.
         max_generation (int, optional): max num of generation to try. Defaults to 5000.
     """
@@ -177,7 +189,7 @@ def genetic_algorithm(
     ]
 
     # for each iteration, do the following
-    while generation < max_generation:
+    for generation in tqdm(range(max_generation)):
         # calculate errors associated with each offspring
         updated_boards_errors = [
             get_error_from_updated_sukudo(board)[0] for board in updated_boards
