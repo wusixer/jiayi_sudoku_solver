@@ -1,5 +1,11 @@
 ### A Sudoku solver made with different flavors
 
+Current available flavors:
+
+1. Backtracking
+2. Genetic algorithm
+3. Simulated annealing
+
+
 To do:
-1. clear up scripts for simulated anealing for solving Sudoku
-2. add using deep learning (GNN, CNN) for solving Sodoku
+1. add using deep learning (GNN, CNN) for solving Sodoku
